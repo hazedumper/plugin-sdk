@@ -138,6 +138,8 @@ DECL_SHARED_CLASS(process);
 DECL_SHARED_CLASS(plugin);
 DECL_SHARED_CLASS(dependencies);
 DECL_SHARED_CLASS(module_loader);
+DECL_SHARED_CLASS(log);
+DECL_SHARED_CLASS(log_factory);
 
 inline
 auto
