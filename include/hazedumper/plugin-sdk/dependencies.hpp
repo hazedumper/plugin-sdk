@@ -16,11 +16,12 @@ FINAL_CLASS(dependencies)
     using unload_plugin_fn = std::function<void(ptr)>;
 
 public:
-    explicit
     dependencies(
-        module_loader_ptr modules
+        module_loader_ptr modules,
+        log_factory_ptr   logs
     ) noexcept
         : modules_(std::move(modules))
+        , logs_(std::move(logs))
     {}
 
     NODISCARD
@@ -35,6 +36,13 @@ public:
     modules() const noexcept -> module_loader_ptr
     {
         return modules_;
+    }
+
+    NODISCARD
+    auto
+    logs() const noexcept -> log_factory_ptr
+    {
+        return logs_;
     }
 
     NODISCARD
@@ -99,11 +107,13 @@ public:
 
         plugins_.clear();
         modules_.reset();
+        logs_.reset();
     }
 
 private:
     module_loader_ptr modules_;
     process_ptr       process_{};
+    log_factory_ptr   logs_{};
     map_plugins       plugins_{};
 };
 }
