@@ -104,6 +104,14 @@
 #   endif
 #endif //HAZEDUMPER_EXPORT
 
+#if !defined(MACRO_CONCAT)
+#   if !defined(MACRO_CONCAT_IMPL)
+#       define MACRO_CONCAT_IMPL(a, b) \
+            a##b
+#   endif //MACRO_CONCAT_IMPL
+#   define MACRO_CONCAT(a, b) MACRO_CONCAT_IMPL(a, b)
+#endif //MACRO_CONCAT
+
 namespace hazedumper {
 using i8    = std::int8_t;
 using i16   = std::int16_t;
