@@ -61,5 +61,5 @@ TBA
 
 - [@Mike Pall](https://github.com/MikePall) - [The LuaJIT Project](https://luajit.org/)
 - [@nlohmann](https://github.com/nlohmann) - [JSON for Modern C++](https://github.com/nlohmann/json)
-- [@biojppm](https://github.com/biojppm) - [Rapid YAML - a library to parse and emit YAML, and do it fast](https://github.com/biojppm/rapidyaml)
+- [@jimmiebergmann](https://github.com/jimmiebergmann) - [Single header YAML 1.0 C++11 serializer/deserializer](https://github.com/jimmiebergmann/mini-yaml)
 - [@jarro2783](https://github.com/jarro2783) - [Lightweight C++ command line option parser](https://github.com/jarro2783/cxxopts)
