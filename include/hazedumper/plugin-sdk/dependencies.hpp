@@ -40,11 +40,7 @@ public:
         const std::string_view name
     ) const noexcept -> plugin_ptr
     {
-        const auto hash{
-            std::hash<
-                std::string_view
-            >{}(name)
-        };
+        const auto hash{ hash_string(name) };
 
         return plugins_.contains(hash)
             ? plugins_.at(hash).ptr
@@ -57,11 +53,7 @@ public:
         plugin_ptr plugin
     ) -> void
     {
-        const auto hash{
-            std::hash<
-                std::string_view
-            >{}(plugin->name())
-        };
+        const auto hash{ hash_string(plugin->name()) };
 
         if (!plugins_.contains(hash)) {
             plugins_.insert(

@@ -124,6 +124,15 @@ DECL_SHARED_CLASS(image);
 DECL_SHARED_CLASS(process);
 DECL_SHARED_CLASS(plugin);
 DECL_SHARED_CLASS(dependencies);
+
+inline
+auto
+hash_string(
+    const std::string_view input
+) noexcept -> szt
+{
+    return std::hash<std::string_view>{}(input);
+}
 }
 
 namespace hazed = hazedumper;

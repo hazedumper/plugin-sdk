@@ -123,11 +123,7 @@ msvc_process::get_image(
     const pattern::cache   cache_strategy
 ) -> image_ptr
 {
-    const auto hash{
-        std::hash<
-            std::string_view
-        >{}(name)
-    };
+    const auto hash{ hash_string(name) };
 
     if (images_.contains(hash)) {
         return images_[hash];
