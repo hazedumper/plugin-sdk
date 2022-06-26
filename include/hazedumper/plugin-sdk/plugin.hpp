@@ -34,12 +34,16 @@ public:
     NODISCARD
     virtual
     auto
-    load() -> bool = 0;
+    load() -> bool
+    {
+        return true;
+    }
 
     NODISCARD
     virtual
     auto
-    unload() -> void = 0;
+    unload() -> void
+    {}
 
     NODISCARD
     virtual
