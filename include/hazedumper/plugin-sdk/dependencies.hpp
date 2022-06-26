@@ -16,13 +16,25 @@ FINAL_CLASS(dependencies)
     using unload_plugin_fn = std::function<void(ptr)>;
 
 public:
-    dependencies() = default;
+    explicit
+    dependencies(
+        module_loader_ptr modules
+    ) noexcept
+        : modules_(std::move(modules))
+    {}
 
     NODISCARD
     auto
     process() const noexcept -> process_ptr
     {
         return process_;
+    }
+
+    NODISCARD
+    auto
+    modules() const noexcept -> module_loader_ptr
+    {
+        return modules_;
     }
 
     NODISCARD
@@ -68,7 +80,6 @@ public:
         }
     }
 
-
     auto
     shutdown(
         const unload_plugin_fn& callback
@@ -90,7 +101,8 @@ public:
     }
 
 private:
-    process_ptr process_{};
-    map_plugins plugins_{};
+    module_loader_ptr modules_;
+    process_ptr       process_{};
+    map_plugins       plugins_{};
 };
 }

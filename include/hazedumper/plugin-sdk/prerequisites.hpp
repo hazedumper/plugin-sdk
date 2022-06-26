@@ -34,10 +34,11 @@
 #include <cstdint>
 #include <string_view>
 #include <map>
+#include <memory>
 #include <vector>
 #include <functional>
 
-#if !defined(HAZEDUMPER_MSVC)
+#if defined(HAZEDUMPER_MSVC)
 #   if defined(_WIN64)
 #       if !defined(HAZEDUMPER_X64)
 #           define HAZEDUMPER_X64
@@ -124,6 +125,7 @@ DECL_SHARED_CLASS(image);
 DECL_SHARED_CLASS(process);
 DECL_SHARED_CLASS(plugin);
 DECL_SHARED_CLASS(dependencies);
+DECL_SHARED_CLASS(module_loader);
 
 inline
 auto

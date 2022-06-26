@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="include\hazedumper\plugin-sdk\dependencies.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\image.hpp" />
+    <ClInclude Include="include\hazedumper\plugin-sdk\module_loader.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\pattern.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\plugin.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\prerequisites.hpp" />
