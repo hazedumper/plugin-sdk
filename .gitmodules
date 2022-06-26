@@ -2,5 +2,5 @@
 	path = contrib/jarro2783/cxxopts
 	url = https://github.com/jarro2783/cxxopts
 [submodule "contrib/mini-yaml"]
-	path = contrib/mini-yaml
+	path = contrib/jimmiebergmann/mini-yaml
 	url = https://github.com/jimmiebergmann/mini-yaml
