@@ -18,12 +18,12 @@ protected:
     };
 
     template<szt N, typename ...Args>
-    void
+    auto
     forward_message_for_level(
         const i32         current_level,
         const char* const fmt,
         const Args&       ...args
-    )
+    ) -> log*
     {
         if (!!(levels() & current_level)) {
             char buffer[N + 1]{};
@@ -37,6 +37,8 @@ protected:
             
             handle_message(current_level, buffer);
         }
+
+        return this;
     }
 
     virtual
@@ -57,6 +59,12 @@ public:
 
     virtual
     auto
+    new_line(
+        bool active
+    ) noexcept -> log* = 0;
+
+    virtual
+    auto
     debug(
         bool active
     ) noexcept -> log* = 0;
@@ -92,63 +100,63 @@ public:
     ) noexcept -> log* = 0;
 
     template<szt N = 512, typename ...Args>
-    void
+    auto
     debug(
         const char* const fmt,
         const Args&       ...args
-    )
+    ) -> log*
     {
-        forward_message_for_level<N>(level_debug, fmt, args...);
+        return forward_message_for_level<N>(level_debug, fmt, args...);
     }
 
     template<szt N = 512, typename ...Args>
-    void
+    auto
     verbose(
         const char* const fmt,
         const Args&       ...args
-    )
+    ) -> log*
     {
-        forward_message_for_level<N>(level_verbose, fmt, args...);
+        return forward_message_for_level<N>(level_verbose, fmt, args...);
     }
 
     template<szt N = 512, typename ...Args>
-    void
+    auto
     info(
         const char* const fmt,
         const Args&       ...args
-    )
+    ) -> log*
     {
-        forward_message_for_level<N>(level_info, fmt, args...);
+        return forward_message_for_level<N>(level_info, fmt, args...);
     }
 
     template<szt N = 512, typename ...Args>
-    void
+    auto
     notice(
         const char* const fmt,
         const Args&       ...args
-    )
+    ) -> log*
     {
-        forward_message_for_level<N>(level_notice, fmt, args...);
+        return forward_message_for_level<N>(level_notice, fmt, args...);
     }
 
     template<szt N = 512, typename ...Args>
-    void
+    auto
     warning(
         const char* const fmt,
         const Args&       ...args
-    )
+    ) -> log*
     {
-        forward_message_for_level<N>(level_warning, fmt, args...);
+        return forward_message_for_level<N>(level_warning, fmt, args...);
     }
 
     template<szt N = 512, typename ...Args>
-    void
+    auto
     error(
         const char* const fmt,
         const Args&       ...args
-    )
+    ) -> log*
     {
-        forward_message_for_level<N>(level_error, fmt, args...);
+        return forward_message_for_level<N>(level_error, fmt, args...);
     }
 };
 }
