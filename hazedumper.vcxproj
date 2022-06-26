@@ -164,8 +164,14 @@
     <ClInclude Include="include\hazedumper\plugin-sdk\plugin.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\prerequisites.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\process.hpp" />
+    <ClInclude Include="src\impl\module_loader.hpp" />
+    <ClInclude Include="src\impl\module_loader\abstract_module_loader.hpp" />
+    <ClInclude Include="src\impl\module_loader\module_loader_factory.hpp" />
+    <ClInclude Include="src\impl\module_loader\module_loader_msvc.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\impl\module_loader\module_loader_factory.cpp" />
+    <ClCompile Include="src\impl\module_loader\module_loader_msvc.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
