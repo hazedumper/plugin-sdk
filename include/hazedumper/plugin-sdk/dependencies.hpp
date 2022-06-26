@@ -13,7 +13,7 @@ FINAL_CLASS(dependencies)
     };
 
     using map_plugins      = std::map<szt, plugin_info>;
-    using unload_plugin_fn = std::function<void(const plugin_ptr&, ptr)>;
+    using unload_plugin_fn = std::function<void(ptr)>;
 
 public:
     dependencies() = default;
@@ -88,7 +88,7 @@ public:
             auto& [handle, ptr] = value;
 
             if (callback) {
-                callback(ptr, handle);
+                callback(handle);
             }
 
             ptr.reset();
