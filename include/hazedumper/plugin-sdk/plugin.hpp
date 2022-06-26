@@ -108,14 +108,6 @@ protected:
 };
 } //namespace hazedumper
 
-#if !defined(MACRO_CONCAT)
-#   if !defined(MACRO_CONCAT_IMPL)
-#       define MACRO_CONCAT_IMPL(a, b) \
-            a##b
-#   endif //MACRO_CONCAT_IMPL
-#   define MACRO_CONCAT(a, b) MACRO_CONCAT_IMPL(a, b)
-#endif //MACRO_CONCAT
-
 #if !defined(HAZEDUMPER_PLUGIN)
 #   define HAZEDUMPER_PLUGIN(PluginClass, ...)                 \
         extern "C"                                             \
