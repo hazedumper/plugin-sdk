@@ -97,7 +97,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\biojppm\rapidyaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\mini-yaml\yaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -114,7 +114,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\biojppm\rapidyaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\mini-yaml\yaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -132,7 +132,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\biojppm\rapidyaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\mini-yaml\yaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -149,7 +149,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\biojppm\rapidyaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\mini-yaml\yaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -183,6 +183,7 @@
     <ClInclude Include="src\impl\module_loader\module_loader_msvc.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="contrib\mini-yaml\yaml\Yaml.cpp" />
     <ClCompile Include="src\fs.cpp" />
     <ClCompile Include="src\impl\cli\cli.cpp" />
     <ClCompile Include="src\impl\log\log_factory.cpp" />

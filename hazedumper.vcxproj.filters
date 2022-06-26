@@ -98,5 +98,8 @@
     <ClCompile Include="src\impl\log\log_factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="contrib\mini-yaml\yaml\Yaml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
