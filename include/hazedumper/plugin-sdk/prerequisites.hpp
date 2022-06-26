@@ -1,11 +1,61 @@
 #pragma once
 
+#if defined(_MSC_VER)
+#   if !defined(HAZEDUMPER_MSVC)
+#       define HAZEDUMPER_MSVC
+#   endif //HAZEDUMPER_MSVC
+#elif defined(__APPLE__)
+#   include <TargetConditionals.h>
+#   if !defined(TARGET_OS_MAC)
+#       error "Requires Apple macOS platform"
+#   endif //TARGET_OS_MAC
+#   if !defined(HAZEDUMPER_MACOS)
+#       define HAZEDUMPER_MACOS
+#   endif //HAZEDUMPER_MACOS
+#elif defined(__linux__) || defined(__unix__)
+#   if !defined(HAZEDUMPER_LINUX)
+#       define HAZEDUMPER_LINUX
+#   endif //HAZEDUMPER_LINUX
+#else
+#   error "Unknown compiler"
+#endif
+
+#if defined(HAZEDUMPER_MSVC)
+#   if !defined(NOMINMAX)
+#       define NOMINMAX
+#   endif //NOMINMAX
+#if !defined(WIN32_LEAN_AND_MEAN)
+#       define WIN32_LEAN_AND_MEAN
+#   endif //WIN32_LEAN_AND_MEAN
+#   include <Windows.h>
+#endif
+
 #include <cstddef>
 #include <cstdint>
 #include <string_view>
 #include <map>
 #include <vector>
 #include <functional>
+
+#if !defined(HAZEDUMPER_MSVC)
+#   if defined(_WIN64)
+#       if !defined(HAZEDUMPER_X64)
+#           define HAZEDUMPER_X64
+#       endif //HAZEDUMPER_X64
+#   else
+#       if !defined(HAZEDUMPER_X86)
+#           define HAZEDUMPER_X86
+#       endif //HAZEDUMPER_X86
+#   endif
+#elif INTPTR_MAX == INT64_MAX
+#   if !defined(HAZEDUMPER_X64)
+#       define HAZEDUMPER_X64
+#   endif //HAZEDUMPER_X64
+#else
+#   if !defined(HAZEDUMPER_X86)
+#       define HAZEDUMPER_X86
+#   endif //HAZEDUMPER_X86
+#endif
 
 #if !defined(NODISCARD)
 #   if __cplusplus >= 201703L
