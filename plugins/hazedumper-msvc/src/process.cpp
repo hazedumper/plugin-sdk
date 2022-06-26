@@ -62,7 +62,7 @@ msvc_process::attach(
     const std::string_view name
 ) -> bool
 {
-    std::unique_ptr<void, decltype(&CloseHandle)> snap(
+    const  std::unique_ptr<void, decltype(&CloseHandle)> snap(
         CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0),
         CloseHandle
     );
@@ -75,7 +75,6 @@ msvc_process::attach(
     PROCESSENTRY32 entry{
         .dwSize = sizeof(PROCESSENTRY32)
     };
-
     
     if (!!Process32First(snap.get(), &entry)) {
         do {
