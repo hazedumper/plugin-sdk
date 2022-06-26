@@ -98,6 +98,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\biojppm\rapidyaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,6 +116,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\biojppm\rapidyaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +133,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\biojppm\rapidyaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,6 +151,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)contrib\LuaJIT\include;$(SolutionDir)contrib\nlohmann\json\include;$(SolutionDir)contrib\jarro2783\cxxopts\include;$(SolutionDir)contrib\biojppm\rapidyaml;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -157,19 +161,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\hazedumper\fs.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\dependencies.hpp" />
+    <ClInclude Include="include\hazedumper\plugin-sdk\detail\version.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\image.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\module_loader.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\pattern.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\plugin.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\prerequisites.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\process.hpp" />
+    <ClInclude Include="src\impl\cli.hpp" />
+    <ClInclude Include="src\impl\cli\cli.hpp" />
     <ClInclude Include="src\impl\module_loader.hpp" />
     <ClInclude Include="src\impl\module_loader\abstract_module_loader.hpp" />
     <ClInclude Include="src\impl\module_loader\module_loader_factory.hpp" />
     <ClInclude Include="src\impl\module_loader\module_loader_msvc.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\fs.cpp" />
+    <ClCompile Include="src\impl\cli\cli.cpp" />
     <ClCompile Include="src\impl\module_loader\module_loader_factory.cpp" />
     <ClCompile Include="src\impl\module_loader\module_loader_msvc.cpp" />
     <ClCompile Include="src\main.cpp" />
