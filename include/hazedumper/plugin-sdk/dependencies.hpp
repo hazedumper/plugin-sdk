@@ -98,6 +98,7 @@ public:
         }
 
         plugins_.clear();
+        modules_.reset();
     }
 
 private:
