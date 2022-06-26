@@ -24,13 +24,14 @@ public:
     virtual
     auto
     close(
-        ptr handle
+        cptr handle
     ) -> void = 0;
 
     NODISCARD
     virtual
     auto
     exported(
+        std::string_view module_name,
         std::string_view name
     ) const noexcept -> ptr = 0;
 
@@ -38,22 +39,37 @@ public:
     virtual
     auto
     exported(
-        ptr handle
+        const char*      module_name,
+        std::string_view name
+    ) const noexcept -> ptr = 0;
+
+    NODISCARD
+    virtual
+    auto
+    exported(
+        cptr             handle,
+        std::string_view name
     ) const noexcept -> ptr = 0;
 
     template<typename T, typename Argument>
     NODISCARD
     auto
     exported(
-        const Argument arg
+        const Argument         arg,
+        const std::string_view name
     ) const noexcept -> T
     {
         static_assert(
             std::is_same_v<Argument, std::string_view> ||
+            std::is_same_v<Argument, std::string> ||
             std::is_pointer_v<Argument>
         );
 
-        return reinterpret_cast<T>(exported(arg));
+        if constexpr (std::is_same_v<Argument, char*>) {
+            reinterpret_cast<T>(exported(std::string_view{ arg }, name));
+        }
+
+        return reinterpret_cast<T>(exported(arg, name));
     }
 };
 }
