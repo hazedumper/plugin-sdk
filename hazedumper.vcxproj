@@ -165,6 +165,8 @@
     <ClInclude Include="include\hazedumper\plugin-sdk\dependencies.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\detail\version.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\image.hpp" />
+    <ClInclude Include="include\hazedumper\plugin-sdk\log.hpp" />
+    <ClInclude Include="include\hazedumper\plugin-sdk\log_factory.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\module_loader.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\pattern.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\plugin.hpp" />
@@ -172,6 +174,9 @@
     <ClInclude Include="include\hazedumper\plugin-sdk\process.hpp" />
     <ClInclude Include="src\impl\cli.hpp" />
     <ClInclude Include="src\impl\cli\cli.hpp" />
+    <ClInclude Include="src\impl\log\abstract_log.hpp" />
+    <ClInclude Include="src\impl\log\log_factory.hpp" />
+    <ClInclude Include="src\impl\log\log_msvc.hpp" />
     <ClInclude Include="src\impl\module_loader.hpp" />
     <ClInclude Include="src\impl\module_loader\abstract_module_loader.hpp" />
     <ClInclude Include="src\impl\module_loader\module_loader_factory.hpp" />
@@ -180,6 +185,8 @@
   <ItemGroup>
     <ClCompile Include="src\fs.cpp" />
     <ClCompile Include="src\impl\cli\cli.cpp" />
+    <ClCompile Include="src\impl\log\log_factory.cpp" />
+    <ClCompile Include="src\impl\log\log_msvc.cpp" />
     <ClCompile Include="src\impl\module_loader\module_loader_factory.cpp" />
     <ClCompile Include="src\impl\module_loader\module_loader_msvc.cpp" />
     <ClCompile Include="src\main.cpp" />
