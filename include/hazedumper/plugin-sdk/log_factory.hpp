@@ -14,5 +14,29 @@ public:
     create(
         std::string_view name
     ) -> log_ptr = 0;
+
+    virtual
+    auto
+    debug(
+        bool active
+    ) noexcept -> log_factory* = 0;
+
+    virtual
+    auto
+    verbose(
+        bool active
+    ) noexcept -> log_factory* = 0;
+
+    virtual
+    auto
+    info(
+        bool active
+    ) noexcept -> log_factory* = 0;
+
+    virtual
+    auto
+    notice(
+        bool active
+    ) noexcept -> log_factory* = 0;
 };
 }
