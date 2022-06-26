@@ -6,6 +6,15 @@ FINAL_CLASS(hazedumper_msvc)
     : public hazed::plugin
 {
 public:
+    explicit
+    hazedumper_msvc(
+        const hazed::u32 major,
+        const hazed::u32 minor,
+        const hazed::u32 patch
+    ) noexcept
+        : plugin(major, minor, patch)
+    {}
+
     NODISCARD
     auto
     name() const noexcept -> std::string_view override
@@ -56,4 +65,4 @@ public:
     }
 };
 
-HAZEDUMPER_PLUGIN(hazedumper_msvc);
+HAZEDUMPER_PLUGIN(hazedumper_msvc, 1, 0, 0);
