@@ -120,7 +120,11 @@ using ptr   = void*;
 using cptr  = const void*;
 using raw_t = std::vector<u8>;
 using uptrs = std::vector<uptr>;
+}
 
+#include "detail/version.hpp"
+
+namespace hazedumper {
 DECL_SHARED_CLASS(image);
 DECL_SHARED_CLASS(process);
 DECL_SHARED_CLASS(plugin);
@@ -135,6 +139,8 @@ hash_string(
 {
     return std::hash<std::string_view>{}(input);
 }
+
+constexpr inline detail::version sdk_version(1, 0, 0);
 }
 
 namespace hazed = hazedumper;
