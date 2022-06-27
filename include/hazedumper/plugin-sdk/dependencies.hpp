@@ -17,11 +17,13 @@ FINAL_CLASS(dependencies)
 
 public:
     dependencies(
-        module_loader_ptr modules,
-        log_factory_ptr   logs
+        module_loader_ptr         modules,
+        log_factory_ptr           logs,
+        const lua::gateway* const gateway
     ) noexcept
         : modules_(std::move(modules))
         , logs_(std::move(logs))
+        , gateway_(gateway)
     {}
 
     NODISCARD
@@ -43,6 +45,13 @@ public:
     logs() const noexcept -> log_factory_ptr
     {
         return logs_;
+    }
+
+    NODISCARD
+    auto
+    lua() const noexcept -> const lua::gateway*
+    {
+        return gateway_;
     }
 
     NODISCARD
@@ -94,10 +103,8 @@ public:
     ) noexcept -> void
     {
         process_.reset();
-
-        for (auto& [_, value] : plugins_) {
-            auto& [handle, ptr] = value;
-
+        
+        for (auto& [handle, ptr] : plugins_ | std::views::values) {
             if (callback) {
                 callback(handle);
             }
@@ -111,9 +118,10 @@ public:
     }
 
 private:
-    module_loader_ptr modules_;
-    process_ptr       process_{};
-    log_factory_ptr   logs_{};
-    map_plugins       plugins_{};
+    module_loader_ptr   modules_;
+    log_factory_ptr     logs_;
+    const lua::gateway* gateway_;
+    process_ptr         process_{};
+    map_plugins         plugins_{};
 };
 }
