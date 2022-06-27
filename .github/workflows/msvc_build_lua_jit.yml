@@ -1,0 +1,48 @@
+on:
+  workflow_call:
+    inputs:
+      lua_version:
+        required: true
+        type: string
+
+      artifact_name:
+        required: false
+        type: string
+        default: LuaJIT
+
+      upload_artifact:
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  build_lua_jit:
+    name: Build LuaJIT
+    runs-on: windows-latest
+    steps:
+      - uses: microsoft/setup-msbuild@v1.1
+        with:
+          msbuild-architecture: x64
+
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Download LuaJIT and build from source
+        run: |
+            Invoke-WebRequest https://luajit.org/download/LuaJIT-${{ inputs.lua_version }}.zip -OutFile LuaJIT-${{ inputs.lua_version }}.zip
+            Expand-Archive LuaJIT-${{ inputs.lua_version }}.zip -DestinationPath .
+
+            cd .\LuaJIT-${{ inputs.lua_version }}\src
+            .\msvcbuild.bat static
+
+            New-Item .\LuaJIT\include -ItemType Directory
+            New-Item .\LuaJIT\lib\x64 -ItemType Directory
+
+            @("lauxlib.h", "lua.h", "lua.hpp", "luaconf.h", "luajit.h", "lualib.h") | Move-Item -Destination .\LuaJIT\include
+            Move-Item -Path .\lua51.lib -Destination .\LuaJIT\lib\x64\
+
+            Compress-Archive -Path .\LuaJIT -DestinationPath .\LuaJIT.zip
+
+      - uses: actions/upload-artifact@v3
+        if: ${{ inputs.upload_artifact == true }}
+        with:
+          name: ${{ inputs.artifact_name l}}
+          path: LuaJIT-${{ inputs.lua_version }}/src/LuaJIT.zip
