@@ -32,11 +32,12 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <string_view>
+#include <functional>
 #include <map>
 #include <memory>
+#include <ranges>
+#include <string_view>
 #include <vector>
-#include <functional>
 
 #if defined(HAZEDUMPER_MSVC)
 #   if defined(_WIN64)
