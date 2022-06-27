@@ -1,5 +1,5 @@
 [submodule "contrib/jarro2783/cxxopts"]
-	path = contrib/jarro2783/cxxopts
+	path = include/hazedumper/contrib/jarro2783/cxxopts
 	url = https://github.com/jarro2783/cxxopts
 [submodule "contrib/mini-yaml"]
 	path = contrib/jimmiebergmann/mini-yaml
