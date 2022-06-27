@@ -1,6 +1,5 @@
-
-<h1 align="center">haze dumper</h1>
-<p align="center">A multi-game, config based offset dumper with a plugin system and Lua 5.1 (JIT) support.</p>
+<h1 align="center">Haze-Dumper Plugin SDK</h1>
+<p align="center">A software development kit (SDK) to develop C++ plugins for the haze-dumper or to extend the Lua API.</p>
 <p align="center">
   <a target="_blank"><img src="https://img.shields.io/badge/CMake-3.15-blue" alt="CMake Version" /></a>
   <a target="_blank"><img src="https://img.shields.io/badge/Clang-13-41B883" alt="Clang Version" /></a>
@@ -15,7 +14,6 @@
   - [Windows](#windows)
   - [MacOS](#macos)
   - [Linux](#linux)
-  - [Docker](#docker)
 - [3rd party libraries](#3rd-party-libraries)
 
 ## Local Development
@@ -48,18 +46,8 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
    1. Arch: `sudo pacman -S luajit`
    2. Ubuntu/Debian: `sudo apt install -y libluajit-5.1-dev`
    3. Fedora: `sudo yum install luajit`
-2. Install (development) package `curl`
-   1. Arch: `sudo pacman -S curl`
-   2. Ubuntu/Debian: `sudo apt install -y libcurl4-openssl-dev`
-   3. `sudo yum install libcurl-devel`
-
-### Docker
-
-TBA
 
 ## 3rd party libraries
 
 - [@Mike Pall](https://github.com/MikePall) - [The LuaJIT Project](https://luajit.org/)
-- [@nlohmann](https://github.com/nlohmann) - [JSON for Modern C++](https://github.com/nlohmann/json)
-- [@jimmiebergmann](https://github.com/jimmiebergmann) - [Single header YAML 1.0 C++11 serializer/deserializer](https://github.com/jimmiebergmann/mini-yaml)
 - [@jarro2783](https://github.com/jarro2783) - [Lightweight C++ command line option parser](https://github.com/jarro2783/cxxopts)
