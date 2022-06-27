@@ -1,0 +1,27 @@
+on:
+  workflow_call:
+    inputs:
+      artifact_name:
+        required: true
+        type: string
+
+      pdb_artifact_name:
+        required: false
+        type: string
+        default: ''
+
+jobs:
+  delete_artifact:
+    name: Delete artifact from pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete compiled binary
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: ${{ inputs.artifact_name }}
+
+      - name: Delete compiled pdb file
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: ${{ inputs.pdb_artifact_name }}
+        if: ${{ inputs.pdb_artifact_name != '' }}
