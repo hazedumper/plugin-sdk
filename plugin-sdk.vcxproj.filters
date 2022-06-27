@@ -45,9 +45,21 @@
     <ClInclude Include="include\hazedumper\plugin-sdk\process.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\hazedumper\plugin-sdk\lua\gateway.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\hazedumper\plugin-sdk\lua\call_state.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\hazedumper\plugin-sdk\lua\class.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tests\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lua\gateway.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

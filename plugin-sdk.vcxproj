@@ -140,13 +140,17 @@
     <ClInclude Include="include\hazedumper\plugin-sdk\image.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\log.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\log_factory.hpp" />
+    <ClInclude Include="include\hazedumper\plugin-sdk\lua\class.hpp" />
+    <ClInclude Include="include\hazedumper\plugin-sdk\lua\gateway.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\module_loader.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\pattern.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\plugin.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\prerequisites.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\process.hpp" />
+    <ClInclude Include="include\hazedumper\plugin-sdk\lua\call_state.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\lua\gateway.cpp" />
     <ClCompile Include="tests\main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
