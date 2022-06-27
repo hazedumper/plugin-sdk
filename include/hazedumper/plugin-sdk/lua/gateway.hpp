@@ -42,6 +42,17 @@ public:
         callback_fn      fn
     ) const noexcept -> void;
 
+    template<typename T>
+    auto
+    bind(
+        const std::string_view name,
+        const T                value
+    ) const noexcept -> void
+    {
+        set_global(name);
+        push(value);
+    }
+
     auto
     bind(
         cclass& builder
