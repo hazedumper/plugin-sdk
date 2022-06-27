@@ -3,7 +3,9 @@ Expand-Archive LuaJIT-2.1.0-beta3.zip -DestinationPath .
 
 cd .\LuaJIT-2.1.0-beta3\src
 
-.\msvcbuild.bat static
+Add-Content -Path .\tmp.bat 'call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\amd64\vcvars64.bat"'
+Add-Content -Path .\tmp.bat "msvcbuild.bat static"
+.\tmp.bat
 
 New-Item .\LuaJIT\include -ItemType Directory
 New-Item .\LuaJIT\lib\x64 -ItemType Directory
