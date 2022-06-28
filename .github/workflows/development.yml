@@ -1,0 +1,53 @@
+name: Development
+
+on:
+  push:
+    branches: [develop]
+
+  pull_request:
+    branches: [develop]
+
+jobs:
+  lua:
+    uses: ./.github/workflows/build_lua_jit.yml
+    with:
+      lua_version: '2.1.0-beta3'
+
+  plugin_sdk_debug:
+    needs: lua
+    uses: ./.github/workflows/build_vs_project.yml
+    with:
+      architecture: x64
+      configuration: Debug
+      solution: plugin-sdk.sln
+      output_file: plugin-sdk
+      output_extensions: lib
+      artifact_name: plugin-sdk-debug
+      upload_pdb: true
+      required_artifacts: LuaJIT
+      required_artifacts_path: .
+      pre_build_script: Expand-Archive LuaJIT.zip -DestinationPath .\contrib
+
+  plugin_sdk_release:
+    needs: lua
+    uses: ./.github/workflows/build_vs_project.yml
+    with:
+      architecture: x64
+      configuration: Release
+      solution: plugin-sdk.sln
+      output_file: plugin-sdk
+      output_extensions: lib
+      artifact_name: plugin-sdk-release
+      upload_pdb: true
+      required_artifacts: LuaJIT
+      required_artifacts_path: .
+      pre_build_script: Expand-Archive LuaJIT.zip -DestinationPath .\contrib
+
+  cleanup:
+    needs:
+      - plugin_sdk_debug
+      - plugin_sdk_release
+    uses: ./.github/workflows/delete_artifacts.yml
+    with:
+      name: |
+        LuaJIT
