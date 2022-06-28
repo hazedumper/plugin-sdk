@@ -39,6 +39,14 @@ public:
     NODISCARD
     virtual
     auto
+    target_process() const noexcept -> std::string_view
+    {
+        return {};
+    }
+
+    NODISCARD
+    virtual
+    auto
     pre_load() -> bool
     {
         return true;
