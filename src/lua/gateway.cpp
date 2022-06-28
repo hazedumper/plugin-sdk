@@ -511,6 +511,54 @@ gateway::pcall(
 }
 
 auto
+gateway::boolean(
+    const i32  index,
+    const bool fallback,
+    const bool cleanup
+) const noexcept -> bool
+{
+    auto res{ fallback };
+
+    if (is_bool(index)) {
+        res = !!lua_toboolean(
+            LUA_STATE_FROM_GATEWAY(),
+            index
+        );
+
+
+        if (cleanup) {
+            pop(1);
+        }
+    }
+
+    return res;
+}
+
+auto
+gateway::text(
+    const i32   index,
+    std::string fallback,
+    const bool  cleanup
+) const -> std::string
+{
+    if (is_text(index)) {
+        fallback.assign(
+            luaL_checkstring(
+                LUA_STATE_FROM_GATEWAY(),
+                index
+            )
+        );
+
+
+        if (cleanup) {
+            pop(1);
+        }
+    }
+
+    return fallback;
+}
+
+auto
 gateway::get_number(
     const i32  index,
     const f64  fallback,
