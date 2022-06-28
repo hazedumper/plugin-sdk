@@ -39,7 +39,23 @@ public:
     NODISCARD
     virtual
     auto
+    pre_load() -> bool
+    {
+        return true;
+    }
+
+    NODISCARD
+    virtual
+    auto
     load() -> bool
+    {
+        return true;
+    }
+
+    NODISCARD
+    virtual
+    auto
+    post_load() -> bool
     {
         return true;
     }
