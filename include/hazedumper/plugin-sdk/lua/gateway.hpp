@@ -250,6 +250,22 @@ public:
         i32 error_func
     ) const noexcept -> call_state;
 
+    NODISCARD
+    auto
+    boolean(
+        i32 index,
+        bool fallback = false,
+        bool cleanup = false
+    ) const noexcept -> bool;
+
+    NODISCARD
+    auto
+    text(
+        i32         index,
+        std::string fallback = {},
+        bool        cleanup = false
+    ) const -> std::string;
+
     template<typename T>
     NODISCARD
     auto
@@ -325,6 +341,38 @@ public:
         return ptr
             ? *reinterpret_cast<T**>(ptr)
             : nullptr;
+    }
+
+    template<typename T>
+    NODISCARD
+    auto
+    value(
+        const i32  index,
+        T          fallback = T{},
+        const bool cleanup = false
+    ) const -> T
+    {
+        static_assert(
+            std::is_same_v<bool, T>        ||
+            std::is_floating_point_v<T>    ||
+            std::is_integral_v<T>          ||
+            std::is_enum_v<T>              ||
+            std::is_same_v<std::string, T>,
+            "Type T mst be bool, floating"
+            ", integral, enum or std::string"
+        );
+
+        if constexpr (std::is_same_v<bool, T>) {
+            return boolean(index, fallback, cleanup);
+        }
+        if constexpr (std::is_floating_point_v<T> || std::is_integral_v<T> || std::is_enum_v<T>) {
+            return num<T>(index, fallback, cleanup);
+        }
+        if constexpr (std::is_same_v<std::string, T>) {
+            return text(index, std::move(fallback), cleanup);
+        }
+
+        return fallback;
     }
 
     template<typename T>
