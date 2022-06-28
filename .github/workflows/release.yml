@@ -1,0 +1,116 @@
+name: Create GH release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  lua:
+    uses: ./.github/workflows/build_lua_jit.yml
+    with:
+      lua_version: '2.1.0-beta3'
+
+  plugin_sdk_debug:
+    needs: lua
+    uses: ./.github/workflows/build_vs_project.yml
+    with:
+      architecture: x64
+      configuration: Debug
+      solution: plugin-sdk.sln
+      output_file: plugin-sdk
+      output_extensions: lib
+      artifact_name: plugin-sdk-debug
+      upload_pdb: true
+      required_artifacts: LuaJIT
+      required_artifacts_path: .
+      pre_build_script: Expand-Archive LuaJIT.zip -DestinationPath .\contrib
+
+  plugin_sdk_release:
+    needs: lua
+    uses: ./.github/workflows/build_vs_project.yml
+    with:
+      architecture: x64
+      configuration: Release
+      solution: plugin-sdk.sln
+      output_file: plugin-sdk
+      output_extensions: lib
+      artifact_name: plugin-sdk-release
+      upload_pdb: true
+      required_artifacts: LuaJIT
+      required_artifacts_path: .
+      pre_build_script: Expand-Archive LuaJIT.zip -DestinationPath .\contrib
+
+  publish:
+    runs-on: ubuntu-latest
+    needs:
+      - plugin_sdk_debug
+      - plugin_sdk_release
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: plugin-sdk-debug
+          path: lib/x64/debug
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: plugin-sdk-debug.pdb
+          path: lib/x64/debug
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: plugin-sdk-release
+          path: lib/x64/release
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: plugin-sdk-release.pdb
+          path: lib/x64/release
+
+      - name: Create zip archives for GH release
+        run: |
+          OUT_DIR='hazedumper-plugin-sdk'
+          OUT_INCLUDE_DIR="${OUT_DIR}/include"
+          ZIP_FILENAME="${OUT_DIR}-${VERSION_TAG}"
+
+          mkdir -p "${OUT_INCLUDE_DIR}/hazedumper"
+          mkdir -p "${OUT_INCLUDE_DIR}/hazedumper/contrib/jarro2783/cxxopts/include"
+
+          OUT_INCLUDES=(
+            'hazedumper/plugin-sdk'
+            'hazedumper/contrib/jarro2783/cxxopts/include/cxxopts.hpp'
+          )
+
+          for filename in "${OUT_INCLUDES[@]}"; do
+            mv "include/${filename}" "${OUT_INCLUDE_DIR}/${filename}"
+          done
+
+          mv LICENSE.md "${OUT_DIR}"
+
+          zip -r "${ZIP_FILENAME}.zip" hazedumper-plugin-sdk
+
+          mv lib "${OUT_DIR}"
+
+          zip -r "${ZIP_FILENAME}-msvc.zip" hazedumper-plugin-sdk
+        env:
+          VERSION_TAG: ${{ github.ref_name }}
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "hazedumper-plugin-sdk-v*.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  cleanup:
+    needs: publish
+    uses: ./.github/workflows/delete_artifacts.yml
+    with:
+      name: |
+        LuaJIT
+        plugin-sdk-debug
+        plugin-sdk-debug.pdb
+        plugin-sdk-release
+        plugin-sdk-release.pdb
