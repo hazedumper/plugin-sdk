@@ -1,7 +1,9 @@
 /contrib/LuaJIT
 .idea/
-.vscode/
-.vscode-test/
+/.vscode/*
+!/.vscode/c_cpp_properties.json
+/.vscode-test/*
+!/.vscode-test/c_cpp_properties.json
 .vs/
 [Bb]uild/
 [Cc]make-*/
