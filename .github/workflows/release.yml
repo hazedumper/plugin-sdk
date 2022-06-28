@@ -91,6 +91,14 @@ jobs:
 
           mv LICENSE.md "${OUT_DIR}"
 
+          SDK_MAJOR="$(echo $VERSION_TAG | cut -d. -f1)"
+          SDK_MINOR="$(echo $VERSION_TAG | cut -d. -f2)"
+          SDK_PATCH="$(echo $VERSION_TAG | cut -d. -f3)"
+
+          sed -i \
+            "/sdk_version(/c\constexpr inline detail::version sdk_version($SDK_MAJOR, $SDK_MINOR, $SDK_PATCH);" \
+            "${OUT_INCLUDE_DIR}/hazedumper/plugin-sdk/prerequisites.hpp"
+
           zip -r "${ZIP_FILENAME}.zip" hazedumper-plugin-sdk
 
           mv lib "${OUT_DIR}"
