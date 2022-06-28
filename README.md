@@ -34,7 +34,9 @@
 4. Enter the code below to build [LuaJIT]((https://luajit.org/)) from source
 
 ```Powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; .\build_lua_jit.ps1
+Set-ExecutionPolicy Bypass -Scope Process -Force;
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+.\build_lua_jit.ps1
 ```
 
 5. Open the `plugin-sdk.sln` in Visual Studio 2022
