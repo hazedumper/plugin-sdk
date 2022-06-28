@@ -58,6 +58,13 @@ public:
         return nullptr;
     }
 
+    virtual
+    auto
+    extend_cli(
+        ptr options
+    ) const -> void
+    {}
+
     NODISCARD
     virtual
     auto
@@ -81,7 +88,7 @@ ABSTRACT_CLASS(plugin)
     : public detail::abstract_plugin
 {
 public:
-    explicit 
+    explicit
     plugin(
         const detail::version& vers
     ) noexcept
