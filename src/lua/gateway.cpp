@@ -555,7 +555,7 @@ gateway::text(
         }
     }
 
-    return res;
+    return fallback;
 }
 
 auto
