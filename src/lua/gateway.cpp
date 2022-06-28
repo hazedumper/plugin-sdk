@@ -132,16 +132,18 @@ gateway::bind(
 
     for (const auto& [name, fn] : builder->methods_) {
         table_data.emplace_back(
-            name.data(),
-            reinterpret_cast<lua_CFunction>(fn)
+            luaL_Reg{
+                name.data(),
+                reinterpret_cast<lua_CFunction>(fn)
+            }
         );
     }
 
-    table_data.emplace_back(nullptr, nullptr);
+    table_data.emplace_back(luaL_Reg{nullptr, nullptr});
 
     luaL_newmetatable(l, builder->metatable_.data());
 
-    // for Lua 5.2 and above: 
+    // for Lua 5.2 and above:
     // luaL_setfuncs(l, table_data.data(), nullptr);
     luaL_register(l, nullptr, table_data.data());
     lua_pushvalue(l, -1);
@@ -153,7 +155,7 @@ auto
 gateway::is_bool(
     const i32 index
 ) const noexcept -> bool
-{   
+{
     return lua_isboolean(LUA_STATE_FROM_GATEWAY(), index);
 }
 
@@ -180,7 +182,7 @@ gateway::is_bool(
 
     return std::ranges::all_of(
         indices.begin(),
-        indices.end(), 
+        indices.end(),
         [this](const i32 index)
         {
             return is_bool(index);
@@ -192,7 +194,7 @@ auto
 gateway::is_num(
     const i32 index
 ) const noexcept -> bool
-{   
+{
     return lua_isnumber(LUA_STATE_FROM_GATEWAY(), index);
 }
 
@@ -219,7 +221,7 @@ gateway::is_num(
 
     return std::ranges::all_of(
         indices.begin(),
-        indices.end(), 
+        indices.end(),
         [this](const i32 index)
         {
             return is_num(index);
@@ -231,7 +233,7 @@ auto
 gateway::is_text(
     const i32 index
 ) const noexcept -> bool
-{   
+{
     return lua_isstring(LUA_STATE_FROM_GATEWAY(), index);
 }
 
@@ -258,7 +260,7 @@ gateway::is_text(
 
     return std::ranges::all_of(
         indices.begin(),
-        indices.end(), 
+        indices.end(),
         [this](const i32 index)
         {
             return is_text(index);
@@ -270,7 +272,7 @@ auto
 gateway::is_userdata(
     const i32 index
 ) const noexcept -> bool
-{   
+{
     return lua_isuserdata(LUA_STATE_FROM_GATEWAY(), index);
 }
 
@@ -297,7 +299,7 @@ gateway::is_userdata(
 
     return std::ranges::all_of(
         indices.begin(),
-        indices.end(), 
+        indices.end(),
         [this](const i32 index)
         {
             return is_userdata(index);
@@ -309,7 +311,7 @@ auto
 gateway::is_nil(
     const i32 index
 ) const noexcept -> bool
-{   
+{
     return lua_isnil(LUA_STATE_FROM_GATEWAY(), index);
 }
 
@@ -336,7 +338,7 @@ gateway::is_nil(
 
     return std::ranges::all_of(
         indices.begin(),
-        indices.end(), 
+        indices.end(),
         [this](const i32 index)
         {
             return is_nil(index);

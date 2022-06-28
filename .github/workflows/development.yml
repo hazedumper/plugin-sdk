@@ -51,3 +51,7 @@ jobs:
     with:
       name: |
         LuaJIT
+        plugin-sdk-debug
+        plugin-sdk-debug.pdb
+        plugin-sdk-release
+        plugin-sdk-release.pdb

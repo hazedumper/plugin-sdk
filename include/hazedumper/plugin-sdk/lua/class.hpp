@@ -12,6 +12,14 @@ FINAL_CLASS(cclass)
     {
         std::string name;
         callback_fn fn;
+
+        method_info(
+            std::string       name,
+            const callback_fn fn
+        ) noexcept
+            : name(std::move(name))
+            , fn(fn)
+        {}
     };
 
     using vec_methods = std::vector<method_info>;

@@ -39,7 +39,31 @@ public:
     NODISCARD
     virtual
     auto
+    target_process() const noexcept -> std::string_view
+    {
+        return {};
+    }
+
+    NODISCARD
+    virtual
+    auto
+    pre_load() -> bool
+    {
+        return true;
+    }
+
+    NODISCARD
+    virtual
+    auto
     load() -> bool
+    {
+        return true;
+    }
+
+    NODISCARD
+    virtual
+    auto
+    post_load() -> bool
     {
         return true;
     }
@@ -57,6 +81,13 @@ public:
     {
         return nullptr;
     }
+
+    virtual
+    auto
+    extend_cli(
+        ptr options
+    ) const -> void
+    {}
 
     NODISCARD
     virtual
@@ -81,7 +112,7 @@ ABSTRACT_CLASS(plugin)
     : public detail::abstract_plugin
 {
 public:
-    explicit 
+    explicit
     plugin(
         const detail::version& vers
     ) noexcept
