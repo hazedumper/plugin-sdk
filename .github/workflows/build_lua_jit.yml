@@ -1,3 +1,5 @@
+name: LuaJIT
+
 on:
   workflow_call:
     inputs:
@@ -16,8 +18,7 @@ on:
         default: true
 
 jobs:
-  build_lua_jit:
-    name: Build LuaJIT
+  build:
     runs-on: windows-latest
     steps:
       - uses: microsoft/setup-msbuild@v1.1
@@ -44,5 +45,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: ${{ inputs.upload_artifact == true }}
         with:
-          name: ${{ inputs.artifact_name l}}
+          name: ${{ inputs.artifact_name }}
           path: LuaJIT-${{ inputs.lua_version }}/src/LuaJIT.zip
