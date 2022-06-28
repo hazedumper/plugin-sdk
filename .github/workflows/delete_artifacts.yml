@@ -1,0 +1,16 @@
+name: Delete Artifacts
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        required: true
+        type: string
+
+jobs:
+  delete_artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: ${{ inputs.name }}
