@@ -140,6 +140,7 @@ namespace hazedumper {
 DECL_SHARED_CLASS(image);
 DECL_SHARED_CLASS(process);
 DECL_SHARED_CLASS(plugin);
+DECL_SHARED_CLASS(filesystem);
 DECL_SHARED_CLASS(dependencies);
 DECL_SHARED_CLASS(module_loader);
 DECL_SHARED_CLASS(log);
