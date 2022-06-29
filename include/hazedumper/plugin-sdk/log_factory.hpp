@@ -38,5 +38,17 @@ public:
     notice(
         bool active
     ) noexcept -> log_factory* = 0;
+
+    virtual
+    auto
+    show_names(
+        bool active
+    ) noexcept -> log_factory* = 0;
+
+    virtual
+    auto
+    show_pid(
+        bool active
+    ) noexcept -> log_factory* = 0;
 };
 }
