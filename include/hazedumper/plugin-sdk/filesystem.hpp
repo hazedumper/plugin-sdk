@@ -5,7 +5,7 @@
 namespace hazedumper {
 ABSTRACT_CLASS(filesystem)
 {
-protected:
+public:
     using enum_fn = std::function<void(const std::string&)>;
 
 public:
