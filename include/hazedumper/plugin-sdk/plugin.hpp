@@ -44,10 +44,19 @@ public:
         return {};
     }
 
+    virtual
+    auto
+    extend_cli(
+        ptr options
+    ) const -> void
+    {}
+
     NODISCARD
     virtual
     auto
-    pre_load() -> bool
+    pre_load(
+        ptr parsed_opptions
+    ) -> bool
     {
         return true;
     }
@@ -82,13 +91,6 @@ public:
         return nullptr;
     }
 
-    virtual
-    auto
-    extend_cli(
-        ptr options
-    ) const -> void
-    {}
-
     NODISCARD
     virtual
     auto
@@ -103,6 +105,14 @@ public:
     sdk_version() const noexcept -> detail::version
     {
         return hazed::sdk_version;
+    }
+
+    NODISCARD
+    virtual
+    auto
+    lua_scripts() const -> strings
+    {
+        return {};
     }
 };
 }

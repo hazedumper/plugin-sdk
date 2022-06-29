@@ -114,23 +114,24 @@
 #endif //MACRO_CONCAT
 
 namespace hazedumper {
-using f32   = float;
-using f64   = double;
-using i8    = std::int8_t;
-using i16   = std::int16_t;
-using i32   = std::int32_t;
-using i64   = std::int64_t;
-using iptr  = std::intptr_t;
-using u8    = std::uint8_t;
-using u16   = std::uint16_t;
-using u32   = std::uint32_t;
-using u64   = std::uint64_t;
-using uptr  = std::uintptr_t;
-using szt   = std::size_t;
-using ptr   = void*;
-using cptr  = const void*;
-using raw_t = std::vector<u8>;
-using uptrs = std::vector<uptr>;
+using f32     = float;
+using f64     = double;
+using i8      = std::int8_t;
+using i16     = std::int16_t;
+using i32     = std::int32_t;
+using i64     = std::int64_t;
+using iptr    = std::intptr_t;
+using u8      = std::uint8_t;
+using u16     = std::uint16_t;
+using u32     = std::uint32_t;
+using u64     = std::uint64_t;
+using uptr    = std::uintptr_t;
+using szt     = std::size_t;
+using ptr     = void*;
+using cptr    = const void*;
+using raw_t   = std::vector<u8>;
+using uptrs   = std::vector<uptr>;
+using strings = std::vector<std::string>;
 }
 
 #include "detail/version.hpp"
@@ -158,7 +159,7 @@ hash_string(
     return std::hash<std::string_view>{}(input);
 }
 
-constexpr inline detail::version sdk_version(0, 0, 3);
+constexpr inline detail::version sdk_version(0, 0, 4);
 }
 
 namespace hazed = hazedumper;
