@@ -160,7 +160,42 @@ hash_string(
     return std::hash<std::string_view>{}(input);
 }
 
-constexpr inline detail::version sdk_version(0, 0, 4);
+constexpr inline detail::version sdk_version(0, 0, 5);
 }
 
 namespace hazed = hazedumper;
+
+#if !defined(CXX_OPTION_RAW)
+#   define CXX_OPTION_RAW(Type, Name, Desc) \
+        (Name, Desc, cxxopts::value<Type>())
+#endif //CXX_OPTION_RAW
+
+#if !defined(CXX_OPTION_RAW_DEFAULT)
+#   define CXX_OPTION_RAW_DEFAULT(Type, Name, Desc, Default) \
+        (Name, Desc, cxxopts::value<Type>()->default_value(Default))
+#endif //CLI_OPTION_RAW_DEFAULT
+
+#if !defined(HAZEDUMPER_CLI_BOOL)
+#   define HAZEDUMPER_CLI_BOOL(Name, Desc, Default) \
+        CXX_OPTION_RAW_DEFAULT(bool, Name, Desc, #Default)
+#endif //HAZEDUMPER_CLI_BOOL
+
+#if !defined(HAZEDUMPER_CLI_INT)
+#   define HAZEDUMPER_CLI_INT(Name, Desc) \
+        CXX_OPTION_RAW(hazed::i32, Name, Desc)
+#endif //HAZEDUMPER_CLI_INT
+
+#if !defined(HAZEDUMPER_CLI_INT_FALLBACK)
+#   define HAZEDUMPER_CLI_INT_FALLBACK(Name, Desc) \
+        CXX_OPTION_RAW(hazed::i32, Name, Desc)
+#endif //HAZEDUMPER_CLI_INT_FALLBACK
+
+#if !defined(HAZEDUMPER_CLI_STRING)
+#   define HAZEDUMPER_CLI_STRING(Name, Desc, Default) \
+        CXX_OPTION_RAW_DEFAULT(hazed::i32, Name, Desc, Default)
+#endif //HAZEDUMPER_CLI_STRING
+
+#if !defined(HAZEDUMPER_CLI_STRING_FALLBACK)
+#   define HAZEDUMPER_CLI_STRING_DESC(Name, Desc, Default) \
+        CXX_OPTION_RAW_DEFAULT(std::string, Name, Desc, Default)
+#endif //HAZEDUMPER_CLI_STRING_DESC
