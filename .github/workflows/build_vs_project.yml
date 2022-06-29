@@ -3,6 +3,11 @@ name: Visual Studio 2022
 on:
   workflow_call:
     inputs:
+      submodules:
+        required: false
+        type: string
+        default: ''
+
       architecture:
         required: true
         type: string
@@ -58,6 +63,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: ${{ inputs.submodules }}
 
       - uses: microsoft/setup-msbuild@v1.1
         with:

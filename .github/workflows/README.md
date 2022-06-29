@@ -8,6 +8,7 @@
   - [artifact_name](#artifact_name)
   - [upload_artifact](#upload_artifact)
 - [Build Visual Studio project](#build-visual-studio-project)
+  - [submodules](#submodules)
   - [architecture](#architecture)
   - [configuration](#configuration)
   - [cpu_count](#cpu_count)
@@ -43,6 +44,13 @@ Builds [LuaJIT](https://luajit.org/) from source for *Windows, __x64__*.
 - default: `true`
 
 ## [Build Visual Studio project](build_vs_project.yml)
+
+### submodules
+
+Must be `true` or `recursive`
+
+- required: `false`
+- type: `string`
 
 ### architecture
 
