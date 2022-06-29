@@ -191,8 +191,8 @@ namespace hazed = hazedumper;
 #endif //HAZEDUMPER_CLI_INT_FALLBACK
 
 #if !defined(HAZEDUMPER_CLI_STRING)
-#   define HAZEDUMPER_CLI_STRING(Name, Desc, Default) \
-        CXX_OPTION_RAW_DEFAULT(hazed::i32, Name, Desc, Default)
+#   define HAZEDUMPER_CLI_STRING(Name, Desc) \
+        CXX_OPTION_RAW(std::string, Name, Desc)
 #endif //HAZEDUMPER_CLI_STRING
 
 #if !defined(HAZEDUMPER_CLI_STRING_FALLBACK)
