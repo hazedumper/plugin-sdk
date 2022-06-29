@@ -99,6 +99,18 @@ public:
         bool active
     ) noexcept -> log* = 0;
 
+    virtual
+    auto
+    show_names(
+        bool active
+    ) noexcept -> log* = 0;
+
+    virtual
+    auto
+    show_pid(
+        bool active
+    ) noexcept -> log* = 0;
+
     template<szt N = 512, typename ...Args>
     auto
     debug(
