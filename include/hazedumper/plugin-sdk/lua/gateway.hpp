@@ -365,7 +365,11 @@ public:
         if constexpr (std::is_same_v<bool, T>) {
             return boolean(index, fallback, cleanup);
         }
-        if constexpr (std::is_floating_point_v<T> || std::is_integral_v<T> || std::is_enum_v<T>) {
+        if constexpr (
+            std::is_floating_point_v<T> || 
+            std::is_integral_v<T>       || 
+            std::is_enum_v<T>
+        ) {
             return num<T>(index, fallback, cleanup);
         }
         if constexpr (std::is_same_v<std::string, T>) {
@@ -387,6 +391,7 @@ public:
             std::is_integral_v<T>               ||
             std::is_enum_v<T>                   ||
             std::is_same_v<const char*, T>      ||
+            std::is_null_pointer_v<T>           ||
             std::is_same_v<std::string, T>      ||
             std::is_same_v<std::string_view, T>,
             "Type T must be bool, floating, integral, enum"
@@ -401,6 +406,15 @@ public:
         }
         if constexpr (std::is_integral_v<T> || std::is_enum_v<T>) {
             push_integer(static_cast<i64>(value));
+        }
+        if constexpr (
+            std::is_null_pointer_v<T> ||
+            std::is_same_v<T, std::initializer_list<std::nullptr_t>>
+        ) {
+            if constexpr (std::is_same_v<T, std::initializer_list<std::nullptr_t>>) {
+                push_nil(value.size());
+            }
+            push_nil();
         }
         if constexpr (
             std::is_same_v<const char*, T> || 
@@ -498,6 +512,11 @@ private:
     auto
     push_text(
         std::string_view value
+    ) const noexcept -> void;
+
+    auto
+    push_nil(
+        szt count = 1
     ) const noexcept -> void;
 };
 }

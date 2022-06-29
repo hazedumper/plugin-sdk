@@ -679,3 +679,13 @@ gateway::push_text(
 {
     push_text(value.data());
 }
+
+auto
+gateway::push_nil(
+    const szt count
+) const noexcept -> void
+{
+    for (szt i{}; i < count; ++i) {
+        lua_pushnil(LUA_STATE_FROM_GATEWAY());
+    }
+}
