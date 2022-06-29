@@ -54,7 +54,9 @@ public:
     NODISCARD
     virtual
     auto
-    pre_load() -> bool
+    pre_load(
+        ptr parsed_opptions
+    ) -> bool
     {
         return true;
     }
