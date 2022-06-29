@@ -158,7 +158,7 @@ hash_string(
     return std::hash<std::string_view>{}(input);
 }
 
-constexpr inline detail::version sdk_version(0, 0, 2);
+constexpr inline detail::version sdk_version(0, 0, 3);
 }
 
 namespace hazed = hazedumper;
