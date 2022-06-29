@@ -19,10 +19,12 @@ public:
     dependencies(
         module_loader_ptr         modules,
         log_factory_ptr           logs,
+        filesystem_ptr            fs,
         const lua::gateway* const gateway
     ) noexcept
         : modules_(std::move(modules))
         , logs_(std::move(logs))
+        , fs_(std::move(fs))
         , gateway_(gateway)
     {}
 
@@ -45,6 +47,13 @@ public:
     logs() const noexcept -> log_factory_ptr
     {
         return logs_;
+    }
+
+    NODISCARD
+    auto
+    fs() const noexcept -> filesystem_ptr
+    {
+        return fs_;
     }
 
     NODISCARD
@@ -120,6 +129,7 @@ public:
 private:
     module_loader_ptr   modules_;
     log_factory_ptr     logs_;
+    filesystem_ptr      fs_;
     const lua::gateway* gateway_;
     process_ptr         process_{};
     map_plugins         plugins_{};
