@@ -52,62 +52,69 @@ public:
     ) const noexcept -> void = 0;
 
     NODISCARD
+    virtual
+    auto
+    x86() const noexcept -> bool = 0;
+
+    NODISCARD
     constexpr
     auto
-    id() const noexcept -> u32
-    {
-        return id_;
-    }
+    id() const noexcept -> u32;
 
     template<typename T>
     auto
     read(
-        const uptr address,
-        T* const   buffer
-    ) const noexcept -> void
-    {
-        read_mem(address, buffer, sizeof(T));
-    }
+        uptr address,
+        T*   buffer
+    ) const noexcept -> void;
 
     template<typename T>
     auto
     read(
-        const uptr address,
-        T&         buffer
-    ) const noexcept -> void
-    {
-        read_mem(address, &buffer, sizeof(T));
-    }    
+        uptr address,
+        T&   buffer
+    ) const noexcept -> void;
 
     template<typename T>
     auto
     read(
-        const uptr address
-    ) const noexcept -> T
-    {
-        T buf{};
-
-        read(address, buf);
-
-        return buf;
-    }
+        uptr address
+    ) const noexcept -> T;
 
     template<typename T>
     auto
     write(
-        const uptr address,
-        const T    buffer
-    ) const noexcept -> void
-    {
-        if constexpr (std::is_pointer_v<T>) {
-            write_mem(address, buffer, sizeof(std::remove_pointer_t<T>));
-        } else {
-            write_mem(address, &buffer, sizeof(T));
-        }
-    }
+        uptr address,
+        T    buffer
+    ) const noexcept -> void;
+
+    template<typename T>
+    NODISCARD
+    auto
+    resolve_call(
+        uptr address,
+        bool fix_displacement = false
+    ) const noexcept -> uptr;
+
+    template<typename T>
+    NODISCARD
+    auto
+    resolve_jmp(
+        uptr address,
+        bool fix_displacement = false
+    ) const noexcept -> uptr;
+
+    NODISCARD
+    auto
+    resolve_rip(
+        uptr address,
+        bool fix_displacement = false
+    ) const noexcept -> uptr;
 
 protected:
     u32        id_{};
     map_images images_{};
 };
 }
+
+#include <hazedumper/plugin-sdk/inl/process.inl>
