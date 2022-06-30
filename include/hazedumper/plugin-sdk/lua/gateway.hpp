@@ -521,3 +521,22 @@ private:
     ) const noexcept -> void;
 };
 }
+
+#if !defined(HAZEDUMPER_LUA_C_FUNC_DECLARATION)
+#   define HAZEDUMPER_LUA_C_FUNC_DECLARATION(Name)    \
+        auto                                         \
+        lua_##Name(                                  \
+            const hazed::lua::gateway* const gateway \
+        ) -> hazed::i32
+#endif //HAZEDUMPER_LUA_C_FUNC_DECLARATION
+
+#if !defined(HAZEDUMPER_LUA_C_FUNC)
+#   define HAZEDUMPER_LUA_C_FUNC(Name)       \
+        static                                \
+        HAZEDUMPER_LUA_C_FUNC_DECLARATION(Name)
+#endif //HAZEDUMPER_LUA_C_FUNC
+
+#if !defined(HAZEDUMPER_LUA_C_LAMBDA)
+#   define HAZEDUMPER_LUA_C_LAMBDA() \
+        [](const hazed::lua::gateway* const gateway) -> i32
+#endif //HAZEDUMPER_LUA_C_LAMBDA
