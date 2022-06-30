@@ -52,6 +52,11 @@ public:
     ) const noexcept -> void = 0;
 
     NODISCARD
+    virtual
+    auto
+    x86() const noexcept -> bool = 0;
+
+    NODISCARD
     constexpr
     auto
     id() const noexcept -> u32;
