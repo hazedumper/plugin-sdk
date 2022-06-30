@@ -137,6 +137,7 @@ using strings = std::vector<std::string>;
 #include "detail/version.hpp"
 
 namespace hazedumper {
+DECL_SHARED_CLASS(offset_cache);
 DECL_SHARED_CLASS(image);
 DECL_SHARED_CLASS(process);
 DECL_SHARED_CLASS(plugin);

@@ -20,11 +20,13 @@ public:
         module_loader_ptr         modules,
         log_factory_ptr           logs,
         filesystem_ptr            fs,
+        offset_cache_ptr          cache,
         const lua::gateway* const gateway
     ) noexcept
         : modules_(std::move(modules))
         , logs_(std::move(logs))
         , fs_(std::move(fs))
+        , cache_(std::move(cache))
         , gateway_(gateway)
     {}
 
@@ -54,6 +56,13 @@ public:
     fs() const noexcept -> filesystem_ptr
     {
         return fs_;
+    }
+
+    NODISCARD
+    auto
+    cache() const noexcept -> offset_cache_ptr
+    {
+        return cache_;
     }
 
     NODISCARD
@@ -130,6 +139,7 @@ private:
     module_loader_ptr   modules_;
     log_factory_ptr     logs_;
     filesystem_ptr      fs_;
+    offset_cache_ptr    cache_;
     const lua::gateway* gateway_;
     process_ptr         process_{};
     map_plugins         plugins_{};

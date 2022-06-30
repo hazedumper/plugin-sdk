@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="include\hazedumper\plugin-sdk\dependencies.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\detail\version.hpp" />
+    <ClInclude Include="include\hazedumper\plugin-sdk\offset_cache.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\filesystem.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\image.hpp" />
     <ClInclude Include="include\hazedumper\plugin-sdk\log.hpp" />

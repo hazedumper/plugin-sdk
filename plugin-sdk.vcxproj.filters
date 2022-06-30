@@ -57,6 +57,9 @@
     <ClInclude Include="include\hazedumper\plugin-sdk\filesystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\hazedumper\plugin-sdk\offset_cache.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tests\main.cpp">
