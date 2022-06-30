@@ -5,6 +5,11 @@
 namespace hazedumper {
 ABSTRACT_CLASS(offset_cache)
 {
+protected:
+    using enum_fn = std::function<
+        void(const std::string&, const std::string&, uptr)
+    >;
+
 public:
     virtual
     ~offset_cache() = default;
@@ -16,5 +21,11 @@ public:
         const std::string& name,
         uptr               value
     ) -> void = 0;
+
+    virtual
+    auto
+    enumerate(
+        const enum_fn& callback
+    ) const -> void = 0;
 };
 }
