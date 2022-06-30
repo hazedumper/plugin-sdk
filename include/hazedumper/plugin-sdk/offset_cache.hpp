@@ -12,9 +12,9 @@ public:
     virtual
     auto
     add(
-        std::string_view group,
-        std::string_view name,
-        uptr             value
-    ) -> void;
+        const std::string& group,
+        const std::string& name,
+        uptr               value
+    ) -> void = 0;
 };
 }
