@@ -563,6 +563,171 @@ gateway::call(
 }
 
 auto
+gateway::ref(
+    const pseudo_index index
+) const noexcept -> i32
+{
+    return luaL_ref(
+        LUA_STATE_FROM_GATEWAY(),
+        static_cast<
+            std::underlying_type_t<pseudo_index>
+        >(index)
+    );
+}
+
+auto
+gateway::raw_get_index(
+    const i32 index,
+    const i32 n
+) const noexcept -> void
+{
+    lua_rawgeti(
+        LUA_STATE_FROM_GATEWAY(),
+        index,
+        n
+    );
+}
+
+auto
+gateway::raw_get_index(
+    const pseudo_index index,
+    const i32          n
+) const noexcept -> void
+{
+    raw_get_index(
+        static_cast<
+          std::underlying_type_t<pseudo_index>
+        >(index),
+        n
+    );
+}
+
+auto
+gateway::raw_get_indexr(
+    const i32 index,
+    const i32 n
+) const noexcept -> const gateway*
+{
+    raw_get_index(index, n);
+
+    return this;
+}
+
+auto
+gateway::raw_get_indexr(
+    const pseudo_index index,
+    const i32          n
+) const noexcept -> const gateway*
+{
+    raw_get_index(index, n);
+
+    return this;
+}
+
+auto
+gateway::raw_set_index(
+    const i32 index,
+    const i32 n
+) const noexcept -> void
+{
+    lua_rawseti(
+        LUA_STATE_FROM_GATEWAY(),
+        index,
+        n
+    );
+}
+
+auto
+gateway::raw_set_index(
+    const pseudo_index index,
+    const i32          n
+) const noexcept -> void
+{
+    raw_set_index(
+        static_cast<
+            std::underlying_type_t<pseudo_index>
+        >(index),
+        n
+    );
+}
+
+auto
+gateway::raw_set_indexr(
+    const i32 idx,
+    const i32 ref_id
+) const noexcept -> const gateway*
+{
+    raw_set_index(idx, ref_id);
+
+    return this;
+}
+
+auto
+gateway::raw_set_indexr(
+    const pseudo_index idx,
+    const i32          ref_id
+) const noexcept -> const gateway*
+{
+    raw_set_index(idx, ref_id);
+
+    return this;
+}
+
+auto
+gateway::raw_set(
+    const i32 index
+) const noexcept -> void
+{
+    lua_rawset(
+        LUA_STATE_FROM_GATEWAY(),
+        index
+    );
+}
+
+auto
+gateway::raw_setr(
+    const i32 index
+) const noexcept -> const gateway*
+{
+    raw_set(index);
+
+    return this;
+}
+
+auto
+gateway::raw_get(
+    const i32 index
+) const noexcept -> void
+{
+    lua_rawget(
+        LUA_STATE_FROM_GATEWAY(),
+        index
+    );
+}
+
+auto
+gateway::raw_getr(
+    const i32 index
+) const noexcept -> const gateway*
+{
+    raw_get(index);
+
+    return this;
+}
+
+auto
+gateway::table_length(
+    const i32 index
+) const noexcept -> szt
+{
+    
+    return lua_objlen(
+        LUA_STATE_FROM_GATEWAY(),
+        index
+    );
+}
+
+auto
 gateway::boolean(
     const i32  index,
     const bool fallback,
@@ -584,6 +749,48 @@ gateway::boolean(
     }
 
     return res;
+}
+
+auto
+gateway::get_table(
+    const i32 index
+) const noexcept -> void
+{
+    lua_gettable(
+        LUA_STATE_FROM_GATEWAY(),
+        index
+    );
+}
+
+auto
+gateway::get_tabler(
+    const i32 index
+) const noexcept -> const gateway*
+{
+    get_table(index);
+
+    return this;
+}
+
+auto
+gateway::set_table(
+    const i32 index
+) const noexcept -> void
+{
+    lua_settable(
+        LUA_STATE_FROM_GATEWAY(), 
+        index
+    );
+}
+
+auto
+gateway::set_tabler(
+    const i32 index
+) const noexcept -> const gateway*
+{
+    set_table(index);
+
+    return this;
 }
 
 auto

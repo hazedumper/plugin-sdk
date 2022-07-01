@@ -4,6 +4,13 @@
 #include <hazedumper/plugin-sdk/lua/class.hpp>
 
 namespace hazedumper::lua {
+enum class pseudo_index
+{
+    registry = -10000,
+    env      = -10001,
+    globals  = -10002,
+};
+
 FINAL_CLASS(gateway)
 {
     using callback_fn   = cclass::callback_fn;
@@ -277,11 +284,120 @@ public:
 
     NODISCARD
     auto
+    ref(
+        pseudo_index index
+    ) const noexcept -> i32;
+
+    auto
+    raw_get_index(
+        i32 index,
+        i32 n
+    ) const noexcept -> void;
+
+    auto
+    raw_get_index(
+        pseudo_index index,
+        i32          n
+    ) const noexcept -> void;
+
+    NODISCARD
+    auto
+    raw_get_indexr(
+        i32 index,
+        i32 n
+    ) const noexcept -> const gateway*;
+
+    NODISCARD
+    auto
+    raw_get_indexr(
+        pseudo_index index,
+        i32          n
+    ) const noexcept -> const gateway*;
+
+    auto
+    raw_set_index(
+        i32 index,
+        i32 n
+    ) const noexcept -> void;
+
+    auto
+    raw_set_index(
+        pseudo_index index,
+        i32          n
+    ) const noexcept -> void;
+
+    NODISCARD
+    auto
+    raw_set_indexr(
+        i32 idx,
+        i32 ref_id
+    ) const noexcept -> const gateway*;
+
+    NODISCARD
+    auto
+    raw_set_indexr(
+        pseudo_index idx,
+        i32          ref_id
+    ) const noexcept -> const gateway*;
+
+    auto
+    raw_set(
+        i32 index
+    ) const noexcept -> void;
+
+    NODISCARD
+    auto
+    raw_setr(
+        i32 index
+    ) const noexcept -> const gateway*;
+
+    auto
+    raw_get(
+        i32 index
+    ) const noexcept -> void;
+
+    NODISCARD
+    auto
+    raw_getr(
+        i32 index
+    ) const noexcept -> const gateway*;
+
+    NODISCARD
+    auto
+    table_length(
+        i32 index
+    ) const noexcept -> szt;
+
+    NODISCARD
+    auto
     boolean(
         i32 index,
         bool fallback = false,
         bool cleanup = false
     ) const noexcept -> bool;
+
+    auto
+    get_table(
+        i32 index
+    ) const noexcept -> void;
+
+    NODISCARD
+    auto
+    get_tabler(
+        i32 index
+    ) const noexcept -> const gateway*;
+
+    NODISCARD
+    auto
+    set_table(
+        i32 index
+    ) const noexcept -> void;
+
+    NODISCARD
+    auto
+    set_tabler(
+        i32 index
+    ) const noexcept -> const gateway*;    
 
     NODISCARD
     auto
