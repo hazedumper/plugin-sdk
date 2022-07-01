@@ -511,6 +511,19 @@ gateway::pcall(
 }
 
 auto
+gateway::call(
+    const i32 num_args,
+    const i32 num_results
+) const noexcept -> void
+{
+    lua_call(
+        LUA_STATE_FROM_GATEWAY(),
+        num_args,
+        num_results
+    );
+}
+
+auto
 gateway::boolean(
     const i32  index,
     const bool fallback,
