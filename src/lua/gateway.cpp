@@ -308,6 +308,45 @@ gateway::is_userdata(
 }
 
 auto
+gateway::is_function(
+    const i32 index
+) const noexcept -> bool
+{
+    return lua_isfunction(LUA_STATE_FROM_GATEWAY(), index);
+}
+
+auto
+gateway::is_function(
+    const i32 first_index,
+    const i32 last_index
+) const noexcept -> bool
+{
+    for (auto i{first_index}; i <= last_index; ++i) {
+        if (!is_function(i)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+auto
+gateway::is_function(
+    const stack_indices& indices
+) const noexcept -> bool
+{
+
+    return std::ranges::all_of(
+        indices.begin(),
+        indices.end(),
+        [this](const i32 index)
+        {
+            return is_function(index);
+        }
+    );
+}
+
+auto
 gateway::is_nil(
     const i32 index
 ) const noexcept -> bool

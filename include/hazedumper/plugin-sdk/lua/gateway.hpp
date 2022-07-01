@@ -146,6 +146,25 @@ public:
 
     NODISCARD
     auto
+    is_function(
+        i32 index
+    ) const noexcept -> bool;
+
+    NODISCARD
+    auto
+    is_function(
+        i32 first_index,
+        i32 last_index
+    ) const noexcept -> bool;
+
+    NODISCARD
+    auto
+    is_function(
+        const stack_indices& indices
+    ) const noexcept -> bool;
+
+    NODISCARD
+    auto
     is_nil(
         i32 index
     ) const noexcept -> bool;
@@ -249,6 +268,12 @@ public:
         i32 num_results,
         i32 error_func
     ) const noexcept -> call_state;
+
+    auto
+    call(
+        i32 num_args,
+        i32 num_results
+    ) const noexcept -> void;
 
     NODISCARD
     auto
