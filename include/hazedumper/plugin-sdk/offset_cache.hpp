@@ -22,6 +22,14 @@ public:
         uptr               value
     ) -> void = 0;
 
+    NODISCARD
+    virtual
+    auto
+    find(
+        const std::string& group,
+        const std::string& name
+    ) const noexcept -> uptr = 0;
+
     virtual
     auto
     enumerate(
