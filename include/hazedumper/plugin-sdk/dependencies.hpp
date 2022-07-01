@@ -78,7 +78,7 @@ public:
     auto
     virtual
     shutdown(
-        const unload_plugin_fn& callback
+        HAZEDUMPER_CONST_REF(unload_plugin_fn) callback
     ) noexcept -> void = 0;
 };
 }

@@ -15,13 +15,13 @@ public:
     virtual
     auto
     enum_plugins(
-        const enum_fn& callback
+        HAZEDUMPER_CONST_REF(enum_fn) callback
     ) const noexcept -> void = 0;
 
     virtual
     auto
     enum_scripts(
-        const enum_fn& callback
+        HAZEDUMPER_CONST_REF(enum_fn) callback
     ) const noexcept -> void = 0;
 
     NODISCARD

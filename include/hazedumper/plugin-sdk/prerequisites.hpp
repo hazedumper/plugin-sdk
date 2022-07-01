@@ -113,6 +113,14 @@
 #   define MACRO_CONCAT(a, b) MACRO_CONCAT_IMPL(a, b)
 #endif //MACRO_CONCAT
 
+#if !defined(HAZEDUMPER_CONST_REF)
+#   if defined(HAZEDUMPER_MSVC)
+#       define HAZEDUMPER_CONST_REF(Type) const Type&
+#   else
+#       define HAZEDUMPER_CONST_REF(Type) Type
+#   endif
+#endif //HAZEDUMPER_CONST_REF
+
 namespace hazedumper {
 using f32     = float;
 using f64     = double;

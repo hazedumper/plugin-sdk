@@ -25,7 +25,7 @@ public:
     virtual
     auto
     enumerate(
-        const enum_fn& callback
+        HAZEDUMPER_CONST_REF(enum_fn) callback
     ) const -> void = 0;
 };
 }
